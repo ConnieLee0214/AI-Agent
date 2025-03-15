@@ -6,7 +6,7 @@ The diagram below provides an overview of the system's workflow, followed by det
 
 <img src="Flowchart.png" width="400"/>
 
-1. Input Data
+1. **Input Data**
 The input data will be a .csv file containing information on patients' symptoms, medical history, family history, travel history, and address.
 
 2. News Searcher
