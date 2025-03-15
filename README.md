@@ -7,24 +7,24 @@ The diagram below provides an overview of the system's workflow, followed by det
 <img src="Flowchart.png" width="400"/>
 
 1. **Input Data**
-The input data will be a .csv file containing information on patients' symptoms, medical history, family history, travel history, and address.
+   The input data will be a .csv file containing information on patients' symptoms, medical history, family history, travel history, and address.
 
-2. News Searcher
+3. News Searcher
 This AI agent will search for recent news related to epidemics.
 
-3. Initial Diagnosis
+4. Initial Diagnosis
 This AI agent will analyze the provided symptoms, medical history, family history, and travel history, along with the results from the News Searcher, to     suggest possible diseases.
 
-4. Medical Department Suggestion
+5. Medical Department Suggestion
 Based on the initial diagnosis, this AI agent will recommend the appropriate medical department the user should visit.
 
-5. Search for Nearby Medical Centers and Clinics
+6. Search for Nearby Medical Centers and Clinics
 Once the medical department has been suggested, this AI agent will connect to external sources to find nearby hospitals based on the provided address.
 
-6. Medication Suggestion
+7. Medication Suggestion
 This AI agent will recommend possible medications based on the previous results.
 
-7. Search for Nearby Pharmacies
+8. Search for Nearby Pharmacies
 After the medication suggestion, this AI agent will search for nearby pharmacies based on the provided address.
 
 
