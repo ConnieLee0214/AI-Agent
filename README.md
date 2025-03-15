@@ -13,7 +13,7 @@ The input data will be a .csv file containing information on patients' symptoms,
 This AI agent will search for recent news related to epidemics.
 
 3. Initial Diagnosis
-This AI agent will analyze the provided symptoms, medical history, family history, and travel history, along with the results from the News Searcher, to suggest possible diseases.
+This AI agent will analyze the provided symptoms, medical history, family history, and travel history, along with the results from the News Searcher, to     suggest possible diseases.
 
 4. Medical Department Suggestion
 Based on the initial diagnosis, this AI agent will recommend the appropriate medical department the user should visit.
