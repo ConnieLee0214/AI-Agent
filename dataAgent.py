@@ -14,16 +14,15 @@ from autogen_ext.models.openai import OpenAIChatCompletionClient
 from autogen_ext.agents.web_surfer import MultimodalWebSurfer
 
 load_dotenv()
-
+# HW1 Prompt change info
 async def process_chunk(chunk, start_idx, total_records, model_client, termination_condition):
     """
     處理單一批次資料：
       - 將該批次資料轉成 dict 格式
-      - 組出提示，要求各代理人根據該批次資料進行分析，
-        並提供寶寶照護建議。
+      - 組出提示，要求各代理人根據資料編號進行分析，
       - 請 MultimodalWebSurfer 代理人利用外部網站搜尋功能，
-        搜尋最新寶寶照護建議資訊（例如餵食、睡眠、尿布更換等），
-        並將搜尋結果納入建議中。
+        搜尋相關新聞或網站獲取最近流行病資訊，
+        並將搜尋結果納入分析中。
       - 收集所有回覆訊息並返回。
     """
     # 將資料轉成 dict 格式
@@ -31,12 +30,11 @@ async def process_chunk(chunk, start_idx, total_records, model_client, terminati
     prompt = (
         f"目前正在處理第 {start_idx} 至 {start_idx + len(chunk) - 1} 筆資料（共 {total_records} 筆）。\n"
         f"以下為該批次資料:\n{chunk_data}\n\n"
-        "請根據以上資料進行分析，並提供完整的寶寶照護建議。"
+        "請根據以上資料進行分析，並提供完整的可能疾病與分析依據，以及參考網站。"
         "其中請特別注意：\n"
-        "  1. 根據csv file內的profile_id分析每個寶寶的日常行為與照護需求；\n"
-        "  2. 請參考外部網站，找出最新的寶寶照護建議資訊（例如餵食、睡眠、尿布更換等），\n"
-        "     並將搜尋結果整合進回覆中；\n"
-        "  3. 最後請提供具體的建議和相關參考資訊。\n"
+        "  1. 根據csv file內的編號分析每個病人的症狀，且參考個人病史與家族病史並提供可能的疾病；\n"
+        "  2. 請參考外部新聞相關網站，根據csv file內的旅遊史，並將搜尋結果整合進回覆中，務必注意當下日期找到近期資訊；\n"
+        "  3. 最後請提供可能的疾病，並說明你的分析依據。\n"
         "請各代理人協同合作，提供一份完整且具參考價值的建議。"
     )
     
@@ -80,10 +78,10 @@ async def main():
     
     termination_condition = TextMentionTermination("exit")
     
-    # 使用 pandas 以 chunksize 方式讀取 CSV 檔案
-    csv_file_path = "cuboai_baby_diary.csv"
+    # HW1 Data set info
     chunk_size = 1000
-    chunks = list(pd.read_csv(csv_file_path, chunksize=chunk_size))
+    df = pd.read_excel('Patient_data.xlsx', sheet_name='Sheet1')
+    chunks = [df[i:i + chunk_size] for i in range(0, df.shape[0], chunk_size)]
     total_records = sum(chunk.shape[0] for chunk in chunks)
     
     # 利用 map 與 asyncio.gather 同時處理所有批次（避免使用傳統 for 迴圈）
@@ -104,7 +102,7 @@ async def main():
     
     # 將對話紀錄整理成 DataFrame 並存成 CSV
     df_log = pd.DataFrame(all_messages)
-    output_file = "all_conversation_log.csv"
+    output_file = "AI_medical_all_conversation_log.csv"
     df_log.to_csv(output_file, index=False, encoding="utf-8-sig")
     print(f"已將所有對話紀錄輸出為 {output_file}")
 
