@@ -147,10 +147,10 @@ def main():
         batch_df = batch.copy()
         for item in ITEMS:
             batch_df[item] = [res.get(item, "") for res in batch_results]
-        if start_idx == 0:
-            batch_df.to_csv(output_csv, index=False, encoding="utf-8-sig")
-        else:
-            batch_df.to_csv(output_csv, mode='a', index=False, header=False, encoding="utf-8-sig")
+        # if start_idx == 0:
+        #     batch_df.to_csv(output_csv, index=False, encoding="utf-8-sig")
+        # else:
+        #     batch_df.to_csv(output_csv, mode='a', index=False, header=False, encoding="utf-8-sig")
         print(f"已處理 {end_idx} 筆 / {total}")
         time.sleep(1)
     
