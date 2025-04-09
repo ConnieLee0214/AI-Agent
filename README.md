@@ -48,5 +48,7 @@ The diagram below provides an overview of the system's workflow, followed by det
 
 <img src="HW3 running result.png" width="400"/>
 
+[Proposal Video](https://youtu.be/R4sadwN9y9o)
+
 
 
