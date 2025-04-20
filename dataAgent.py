@@ -30,11 +30,16 @@ async def process_chunk(chunk, start_idx, total_records, model_client, terminati
     prompt = (
         f"目前正在處理第 {start_idx} 至 {start_idx + len(chunk) - 1} 筆資料（共 {total_records} 筆）。\n"
         f"以下為該批次資料:\n{chunk_data}\n\n"
-        "請根據以上資料進行分析，並提供完整的可能疾病與分析依據，以及參考網站。"
+        "請根據以下資料進行分析，並提供每位病人的可能疾病、分析依據與參考來源。請整合所有代理人的功能，生成一份完整且具參考價值的建議報告。"
         "其中請特別注意：\n"
-        "  1. 根據csv file內的編號分析每個病人的症狀，且參考個人病史與家族病史並提供可能的疾病；\n"
-        "  2. 請參考外部新聞相關網站，根據csv file內的旅遊史，並將搜尋結果整合進回覆中，務必注意當下日期找到近期資訊；\n"
-        "  3. 最後請提供可能的疾病，並說明你的分析依據。\n"
+        "  1. 針對 CSV 檔案中的每筆病人資料，請分析其症狀，並結合個人病史與家族病史，推論可能的疾病；\n"
+        "  2. 請local_web_surfer根據每位病人的旅遊史，搜尋近期（近三個月內）相關疫情或傳染病新聞。\n"
+        # "   - 建議搜尋的網站包含：CDC 官網、WHO、Google News、Healthline、PubMed、MedlinePlus。\n"
+        "   - 請明確列出實際參考的網站連結。\n"
+        "   - 請摘要出重點新聞內容，說明其與症狀或疾病推論是否有關聯。\n"
+        "   - 若無旅遊史，則無需搜尋，直接填寫無即可。"
+        "   - 若無相關資料，請說明你嘗試的搜尋方式與結果。\n"
+        "  3. 最後，請清楚列出每位病人可能罹患的疾病，並說明判斷依據與所參考的網站或資料來源連結。。\n"
         "請各代理人協同合作，提供一份完整且具參考價值的建議。"
     )
     
@@ -102,9 +107,19 @@ async def main():
     
     # 將對話紀錄整理成 DataFrame 並存成 CSV
     df_log = pd.DataFrame(all_messages)
-    output_file = "AI_medical_all_conversation_log.csv"
-    df_log.to_csv(output_file, index=False, encoding="utf-8-sig")
-    print(f"已將所有對話紀錄輸出為 {output_file}")
+    print(df_log)
+    # 找出哪一列的 Source 是 data_agent
+    final_report = df_log[df_log['source'] == 'data_agent']['content']
+    print(final_report)
+    final_report.to_csv('final_report_test.csv', index=False, header=True)
+
+    # 存檔
+    # content_data.to_csv('data_agent_content.csv', index=False)
+
+    
+    # output_file = "AI_medical_all_conversation_log0419.csv"
+    # df_log.to_csv(output_file, index=False, encoding="utf-8-sig")
+    # print(f"已將所有對話紀錄輸出為 {output_file}")
 
 if __name__ == '__main__':
     asyncio.run(main())
