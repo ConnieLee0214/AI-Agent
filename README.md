@@ -1,3 +1,8 @@
+[Proposal Video](https://youtu.be/R4sadwN9y9o)
+
+[1st Progress Report Video] (https://youtu.be/1nuv4-JzNIM)
+
+
 # AI Medical Assistant 🤖🏥
 An intelligent medical assistant that helps users diagnose symptoms, recommend specialists, and locate nearby healthcare facilities.
 ## Overview
@@ -47,8 +52,6 @@ The diagram below provides an overview of the system's workflow, followed by det
 [HW3](https://github.com/ConnieLee0214/AI-Agent/blob/main/playwright_application.py)
 
 <img src="HW3 running result.png" width="400"/>
-
-[Proposal Video](https://youtu.be/R4sadwN9y9o)
 
 
 
