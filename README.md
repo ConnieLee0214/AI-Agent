@@ -1,6 +1,6 @@
 [Proposal Video](https://youtu.be/R4sadwN9y9o)
 
-[1st Progress Report Video] (https://youtu.be/1nuv4-JzNIM)
+[1st Progress Report Video](https://youtu.be/1nuv4-JzNIM)
 
 
 # AI Medical Assistant 🤖🏥
