@@ -3,6 +3,7 @@ autogen-ext
 openai
 tiktoken
 aiofiles
+playwright
 # asyncio
 pandas
 # json
