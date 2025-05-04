@@ -3,3 +3,4 @@
 *.csv
 my-app/
 font/
+__pypache__/
