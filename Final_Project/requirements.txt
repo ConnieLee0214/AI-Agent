@@ -2,6 +2,5 @@ autogen-agentchat
 autogen-ext
 asyncio
 pandas
-re
 json
 streamlit
