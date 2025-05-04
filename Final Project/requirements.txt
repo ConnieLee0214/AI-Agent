@@ -3,7 +3,6 @@ autogen-ext
 asyncio
 os
 pandas
-chardet
 re
 json
 streamlit
