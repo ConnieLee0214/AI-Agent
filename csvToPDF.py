@@ -45,7 +45,7 @@ def create_table(pdf: FPDF, df: pd.DataFrame):
     num_columns = len(df.columns)
     col_width = available_width / num_columns
     line_height = 6  # 每行高度
-    font_size = 6
+    font_size = 4
 
     def draw_header():
         pdf.set_fill_color(200, 200, 200)
@@ -118,7 +118,7 @@ def generate_pdf(text: str = None, df: pd.DataFrame = None) -> str:
         print(error_msg)
         return error_msg
     pdf.add_font("ChineseFont", "", chinese_font_path, uni=True)
-    pdf.set_font("ChineseFont", "", 12)
+    pdf.set_font("ChineseFont", "", 4)
     
     if df is not None:
         create_table(pdf, df)
@@ -143,5 +143,5 @@ def generate_pdf(text: str = None, df: pd.DataFrame = None) -> str:
     print("PDF 生成完成")
     return pdf_filename
 
-df = pd.read_csv('final_result.csv') #已結合dataAgent和Playwright結果至這個csv中
+df = pd.read_csv('final_result2.csv') #已結合dataAgent和Playwright結果至這個csv中
 generate_pdf(text=None, df=df)

@@ -22,7 +22,7 @@ async def process_chunk(chunk, start_idx, total_records, model_client, terminati
       - 組出提示，要求各代理人根據資料編號進行分析，
       - 請 MultimodalWebSurfer 代理人利用外部網站搜尋功能，
         搜尋相關新聞或網站獲取最近流行病資訊，
-        並將搜尋結果納入分析中。
+        並將搜尋結果納入分析中。`
       - 收集所有回覆訊息並返回。
     """
     # 將資料轉成 dict 格式
@@ -30,16 +30,25 @@ async def process_chunk(chunk, start_idx, total_records, model_client, terminati
     prompt = (
         f"目前正在處理第 {start_idx} 至 {start_idx + len(chunk) - 1} 筆資料（共 {total_records} 筆）。\n"
         f"以下為該批次資料:\n{chunk_data}\n\n"
-        "請根據以下資料進行分析，並提供每位病人的可能疾病、分析依據與參考來源。請整合所有代理人的功能，生成一份完整且具參考價值的建議報告。"
+        "請根據以下資料進行分析，只需參考症狀、個人病史、家族病史、旅遊史，提供每位病人的可能疾病、分析依據與參考來源。請整合所有代理人的功能，生成一份完整且具參考價值的建議報告。"
         "其中請特別注意：\n"
         "  1. 針對 CSV 檔案中的每筆病人資料，請分析其症狀，並結合個人病史與家族病史，推論可能的疾病；\n"
-        "  2. 請local_web_surfer根據每位病人的旅遊史，搜尋近期（近三個月內）相關疫情或傳染病新聞。\n"
-        # "   - 建議搜尋的網站包含：CDC 官網、WHO、Google News、Healthline、PubMed、MedlinePlus。\n"
+        "  2. 請local_web_surfer使用我自己的SerpAPI 金鑰，根據病人的旅遊史，搜尋近期（近三個月內）旅遊當地相關疫情或傳染病新聞。\n"
         "   - 請明確列出實際參考的網站連結。\n"
         "   - 請摘要出重點新聞內容，說明其與症狀或疾病推論是否有關聯。\n"
         "   - 若無旅遊史，則無需搜尋，直接填寫無即可。"
-        "   - 若無相關資料，請說明你嘗試的搜尋方式與結果。\n"
-        "  3. 最後，請清楚列出每位病人可能罹患的疾病，並說明判斷依據與所參考的網站或資料來源連結。。\n"
+        "  3. 最後，請清楚列出每位病人可能罹患的疾病，並說明判斷依據，若有參考新聞、網站連結請附上。\n"
+        "請務必依照以下格式輸出**，以利後續資料解析處理：\n\n"
+        "  **病人 1（編號 1）：**\n"
+        "   *   **症狀：** 發燒、喉嚨痛、流鼻涕\n"
+        "   *   **個人病史：** 無\n"
+        "   *   **家族病史：** 高血壓\n"
+        "   *   **旅遊史：** 無\n"
+        "   *   **可能疾病：**\n"
+        "       *   **一般感冒/流感：** 發燒、喉嚨痛、流鼻涕為典型症狀。\n"
+        "   *   **分析依據：** 症狀符合一般呼吸道感染。\n"
+        "   *   **旅遊史相關疫情/傳染病新聞：** 無\n"
+        "   *   **參考來源：** UpToDate, Mayo Clinic\n\n"
         "請各代理人協同合作，提供一份完整且具參考價值的建議。"
     )
     
@@ -111,7 +120,7 @@ async def main():
     # 找出哪一列的 Source 是 data_agent
     final_report = df_log[df_log['source'] == 'data_agent']['content']
     print(final_report)
-    final_report.to_csv('final_report_test.csv', index=False, header=True)
+    final_report.to_csv('final_report_0426_2.csv', index=False, header=True)
 
     # 存檔
     # content_data.to_csv('data_agent_content.csv', index=False)

@@ -2,6 +2,7 @@ from playwright.sync_api import sync_playwright
 import os
 from dotenv import load_dotenv
 import pandas as pd
+import csv
 
 
 def search_location(page, target):
@@ -32,10 +33,10 @@ def search_location(page, target):
         info_blocks = entry.select(".W4Efsd")
         # print(info_blocks)
         for block in info_blocks:
-            if "號" in block.get_text():  # 找看起來像地址的
+            if "號" in block.get_text(): 
                 spans = block.find_all("span")
                 for span in spans:
-                    if "號" in span.get_text():  # 尋找真正包含地址的 span
+                    if "號" in span.get_text():
                         address = span.get_text(strip=True)
                         break
             if address:
@@ -78,13 +79,20 @@ with sync_playwright() as p:
         all_results.append({
             "地址": input_address,
             "診所": clincs,
-            "醫院": hospitals
+            "醫院": hospitals,
+            "藥局": pharmacies
         })
 
     input("按 Enter 關閉瀏覽器...")
     browser.close()
-# print(all_results)``
+print(all_results)
+df = pd.DataFrame(all_results)
 
+def format_clinic_list(clinic_list):
+    return "\n".join(f"{clinic['name']} - {clinic['address'].lstrip('·')}" for clinic in clinic_list)
+df['診所'] = df['診所'].apply(format_clinic_list)
+df['醫院'] = df['醫院'].apply(format_clinic_list)
+df.to_csv('location_results.csv', index=True, encoding='utf-8-sig')
 # for input_address in patient_location:
 
 #     with sync_playwright() as p:
