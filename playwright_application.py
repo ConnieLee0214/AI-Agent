@@ -92,6 +92,7 @@ def format_clinic_list(clinic_list):
     return "\n".join(f"{clinic['name']} - {clinic['address'].lstrip('·')}" for clinic in clinic_list)
 df['診所'] = df['診所'].apply(format_clinic_list)
 df['醫院'] = df['醫院'].apply(format_clinic_list)
+df['藥局'] = df['藥局'].apply(format_clinic_list)
 df.to_csv('location_results.csv', index=True, encoding='utf-8-sig')
 # for input_address in patient_location:
 
