@@ -1,14 +1,14 @@
 import streamlit as st
 import pandas as pd
 import asyncio
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from bridge import first_result_process, extract_recommendation_fields
 import os
 
 from agent_runner import run_agent_diaginosis, run_agent_recommendation
 
 # 載入 .env 檔的環境變數（如 API 金鑰）
-load_dotenv()
+# load_dotenv()
 gemini_api_key = st.secrets["GEMINI_API_KEY"]
 
 st.set_page_config(page_title="AI 醫療分析系統", layout="centered")
