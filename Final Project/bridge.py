@@ -1,5 +1,5 @@
 import pandas as pd
-import chardet
+# import chardet
 import os
 import re
 import json
