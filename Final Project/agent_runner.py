@@ -1,7 +1,7 @@
 import asyncio
 import os
 import pandas as pd
-from first_phase_agent import auto_diaginosis, auto_recommendation
+from all_agents import auto_diaginosis, auto_recommendation
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 from autogen_agentchat.conditions import TextMentionTermination
 
