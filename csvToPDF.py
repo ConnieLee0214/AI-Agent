@@ -143,5 +143,5 @@ def generate_pdf(text: str = None, df: pd.DataFrame = None) -> str:
     print("PDF 生成完成")
     return pdf_filename
 
-df = pd.read_csv('final_result2.csv') #已結合dataAgent和Playwright結果至這個csv中
-generate_pdf(text=None, df=df)
+# df = pd.read_csv('final_result2.csv') #已結合dataAgent和Playwright結果至這個csv中
+# generate_pdf(text=None, df=df)
