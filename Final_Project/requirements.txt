@@ -2,6 +2,7 @@ autogen-agentchat
 autogen-ext
 openai
 tiktoken
+aiofiles
 # asyncio
 pandas
 # json
