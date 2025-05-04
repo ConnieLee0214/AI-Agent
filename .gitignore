@@ -2,3 +2,4 @@
 .env
 *.csv
 my-app/
+font/
