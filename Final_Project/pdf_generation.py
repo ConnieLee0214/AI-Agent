@@ -27,5 +27,5 @@ def create_pdf(result_df):
     # pdfkit.from_string(html_out, pdf_output)
     # HTML(string=html_out).write_pdf(pdf_output)
     pisa_status = pisa.CreatePDF(html_out, dest=pdf_output)
-    pisa_status.seek(0)  # 重設游標到檔案開頭
-    return pisa_status
+    pdf_output.seek(0)  # 重設游標到檔案開頭
+    return pdf_output
