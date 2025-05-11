@@ -73,7 +73,10 @@ def first_result_process(first_result):
             raise ValueError(f"❌ JSON 格式錯誤：{e}")
 
         # 兼容 dict 或 list 格式的疫情新聞
-        epidemic_news_raw = data.get("旅遊史相關疫情/傳染病新聞", {})
+        if "旅遊史相關疫情/傳染病新聞" in data.keys():
+            epidemic_news_raw = data.get("旅遊史相關疫情/傳染病新聞", {})
+        else:
+            epidemic_news_raw = data.get("可能疾病", {}).get("旅遊史相關疫情/傳染病新聞", [])
         if isinstance(epidemic_news_raw, list) and epidemic_news_raw:
             first_news = epidemic_news_raw[0]
         elif isinstance(epidemic_news_raw, dict):
@@ -100,15 +103,19 @@ def first_result_process(first_result):
 def extract_recommendation_fields(second_result):
     text = second_result.iloc[0]
     # 嚴重程度評估
-    severity = re.search(r"\*\*嚴重程度評估：\*\*\n\n(.+?)\n\n\*\*", text, re.DOTALL)
+    # severity = re.search(r"\*\*嚴重程度評估：\*\*\n\n(.+?)\n\n\*\*", text, re.DOTALL)
+    severity = re.search(r"\*\*嚴重程度評估：\*\*\s*(.+?)\s*\*\*", text, re.DOTALL)
     severity_text = severity.group(1).strip() if severity else ""
 
     # 是否需立即就醫
-    need_visit = re.search(r"\*\*是否需立即就醫：\*\*\n\n(.+?)\n\n\*\*", text, re.DOTALL)
+    # need_visit = re.search(r"\*\*是否需立即就醫：\*\*\n\n(.+?)\n\n\*\*", text, re.DOTALL)
+    need_visit = re.search(r"\*\*是否需立即就醫：\*\*\s*(.+?)\s*\*\*", text, re.DOTALL)
     need_visit_text = need_visit.group(1).strip() if need_visit else ""
 
     # 看診科別建議/藥品購買建議
-    dept_med = re.search(r"\*\*看診科別建議/藥品購買建議：\*\*\n\n(.+?)\n\n\*\*", text, re.DOTALL)
+    # dept_med = re.search(r"\*\*看診科別建議/藥品購買建議：\*\*\n\n(.+?)\n\n\*\*", text, re.DOTALL)
+    # dept_med = re.search(r"\*\*看診科別建議/藥品購買建議：\*\*\s*(.+)", text, re.DOTALL)
+    dept_med = re.search(r"\*\*看診科別建議.*?(?=TERMINATE)", text, re.DOTALL)
     dept_med_text = dept_med.group(1).strip() if dept_med else ""
 
     return pd.DataFrame([{
