@@ -6,7 +6,6 @@ aiofiles
 playwright
 # playwright.sync_api
 jinja2
-io
 markupsafe
 # asyncio
 pandas
