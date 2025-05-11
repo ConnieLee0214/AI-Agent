@@ -2,7 +2,8 @@ from jinja2 import Environment, FileSystemLoader
 import pandas as pd
 from io import BytesIO
 from markupsafe import Markup
-from weasyprint import HTML
+# from weasyprint import HTML
+from xhtml2pdf import pisa
 import os
 
 
@@ -24,6 +25,7 @@ def create_pdf(result_df):
         # 使用 BytesIO 生成 PDF 並保存在內存中
     pdf_output = BytesIO()
     # pdfkit.from_string(html_out, pdf_output)
-    HTML(string=html_out).write_pdf(pdf_output)
+    # HTML(string=html_out).write_pdf(pdf_output)
+    pisa_status = pisa.CreatePDF(html_out, dest=pdf_output)
     pdf_output.seek(0)  # 重設游標到檔案開頭
     return pdf_output
