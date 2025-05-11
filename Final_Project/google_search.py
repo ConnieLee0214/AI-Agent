@@ -1,7 +1,6 @@
 import requests
 import pandas as pd
 
-# GOOGLE_API_KEY = "AIzaSyArTjJEDSN9F4-M4b3aHrTHYHpO7gbVp_Y"
 
 def search_medication_location(patient_location, GOOGLE_API_KEY):
     def _get_lat_lng(address):
