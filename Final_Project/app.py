@@ -21,6 +21,7 @@ import sys
 # install_playwright_deps()
 import os
 os.system("playwright install")
+os.system('playwright install-deps')
 # 載入 .env 檔的環境變數（如 API 金鑰）
 # load_dotenv()
 gemini_api_key = st.secrets["GEMINI_API_KEY"]
