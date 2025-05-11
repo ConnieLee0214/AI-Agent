@@ -11,14 +11,16 @@ from pdf_generation import create_pdf
 
 import subprocess
 import sys
-subprocess.run(["playwright", "install"])
-def install_playwright_deps():
-    try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "playwright"])
-        subprocess.check_call(["playwright", "install-deps"])
-    except subprocess.CalledProcessError as e:
-        print(f"Error while installing dependencies: {e}")
-install_playwright_deps()
+# subprocess.run(["playwright", "install"])
+# def install_playwright_deps():
+#     try:
+#         subprocess.check_call([sys.executable, "-m", "pip", "install", "playwright"])
+#         subprocess.check_call(["playwright", "install-deps"])
+#     except subprocess.CalledProcessError as e:
+#         print(f"Error while installing dependencies: {e}")
+# install_playwright_deps()
+import os
+os.system("playwright install")
 # 載入 .env 檔的環境變數（如 API 金鑰）
 # load_dotenv()
 gemini_api_key = st.secrets["GEMINI_API_KEY"]
