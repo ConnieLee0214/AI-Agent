@@ -29,7 +29,7 @@ async def auto_diaginosis(df, model_client):
         "   *   **旅遊史相關疫情/傳染病新聞：** （若無請寫「無」）\n"
         "   *   **參考來源：** \n\n"
         "請各代理人協同合作，最後請提供一份完整且具參考價值的建議（務必使用繁體中文）。\n"
-
+        "請直接完成以上任務，無需等待使用者回覆。"
     )
     
     # 為每個批次建立新的 agent 與 team 實例
@@ -72,7 +72,8 @@ async def auto_recommendation(df, model_client):
         "  **嚴重程度評估：**\n"
         "  **是否需立即就醫：**\n"
         "  **看診科別建議/藥品購買建議：**\n"
-        "請各代理人協同合作，提供一份完整且具參考價值的建議。"
+        "請各代理人協同合作，提供一份完整且具參考價值的建議。\n"
+        "請直接完成以上任務，無需等待使用者回覆。"
     )
     local_data_agent = AssistantAgent("data_agent", model_client)
     # local_assistant = AssistantAgent("assistant", model_client)
