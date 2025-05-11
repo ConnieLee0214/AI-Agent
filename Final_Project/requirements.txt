@@ -8,9 +8,8 @@ playwright
 # playwright.sync_api
 jinja2
 markupsafe
-pdfkit
 # asyncio
 pandas
 # json
 streamlit
-weasyprint
+xhtml2pdf
