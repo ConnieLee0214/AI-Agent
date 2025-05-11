@@ -9,6 +9,9 @@ from agent_runner import run_agent_diaginosis, run_agent_recommendation
 from playwright_application import search_medication_location
 from pdf_generation import create_pdf
 
+import subprocess
+subprocess.run(["playwright", "install"])
+
 # 載入 .env 檔的環境變數（如 API 金鑰）
 # load_dotenv()
 gemini_api_key = st.secrets["GEMINI_API_KEY"]
