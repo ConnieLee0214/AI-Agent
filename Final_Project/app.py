@@ -98,7 +98,7 @@ if "user_df" in st.session_state and not st.session_state["user_df"].empty:
         st.download_button(
             label="💾 下載分析結果 PDF",
             # data=final_result.to_csv(index=False),
-            data = pdf_output
+            data = pdf_output,
             file_name="AI_分析報告.pdf",
             mime="application/pdf"
         )
