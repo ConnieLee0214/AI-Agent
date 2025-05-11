@@ -3,6 +3,7 @@ import pdfkit
 import pandas as pd
 from io import BytesIO
 from markupsafe import Markup
+import os
 
 
 def create_pdf(result_df):
