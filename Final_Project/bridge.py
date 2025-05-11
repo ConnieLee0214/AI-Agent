@@ -116,7 +116,7 @@ def extract_recommendation_fields(second_result):
     # dept_med = re.search(r"\*\*看診科別建議/藥品購買建議：\*\*\n\n(.+?)\n\n\*\*", text, re.DOTALL)
     # dept_med = re.search(r"\*\*看診科別建議/藥品購買建議：\*\*\s*(.+)", text, re.DOTALL)
     dept_med = re.search(r"\*\*看診科別建議.*?(?=TERMINATE)", text, re.DOTALL)
-    dept_med_text = dept_med.group(1).strip() if dept_med else ""
+    dept_med_text = dept_med.group(0).strip() if dept_med else ""
 
     return pd.DataFrame([{
         "嚴重程度評估": severity_text,
