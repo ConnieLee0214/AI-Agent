@@ -55,6 +55,8 @@ The diagram below provides an overview of the system's workflow, followed by det
 
 [HW4](https://github.com/ConnieLee0214/AI-Agent/blob/main/csvToPDF.py)
 
+<img src="HW4 result.png" width="400"/>
+
 [HW5](https://ai-agent-tjdppnrj2hhbip7hseokjm.streamlit.app/)
 
 
