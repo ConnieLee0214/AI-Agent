@@ -12,7 +12,8 @@ def create_pdf(result_df):
     patient = result_df.iloc[0].to_dict()
     # 載入模板並渲染
     # env = Environment(loader=FileSystemLoader('/Users/connielee/Desktop/code/Final_Project'))
-    env = Environment(loader=FileSystemLoader('./'))
+    template_dir = os.path.dirname(__file__)
+    env = Environment(loader=FileSystemLoader(template_dir))
     env.filters['nl2br'] = _nl2br
     template = env.get_template("report_template.html")
     html_out = template.render(patient=patient)
