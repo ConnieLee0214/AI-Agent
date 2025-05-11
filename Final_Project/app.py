@@ -6,25 +6,17 @@ import os
 from jinja2 import Environment, FileSystemLoader
 from bridge import first_result_process, extract_recommendation_fields
 from agent_runner import run_agent_diaginosis, run_agent_recommendation
-from playwright_application import search_medication_location
+# from playwright_application import search_medication_location
+from google_search import search_medication_location
 from pdf_generation import create_pdf
 
-import subprocess
-import sys
-# subprocess.run(["playwright", "install"])
-# def install_playwright_deps():
-#     try:
-#         subprocess.check_call([sys.executable, "-m", "pip", "install", "playwright"])
-#         subprocess.check_call(["playwright", "install-deps"])
-#     except subprocess.CalledProcessError as e:
-#         print(f"Error while installing dependencies: {e}")
-# install_playwright_deps()
-import os
-os.system("playwright install")
-os.system('playwright install-deps')
+# import os
+# os.system("playwright install")
+# os.system('playwright install-deps')
 # 載入 .env 檔的環境變數（如 API 金鑰）
 # load_dotenv()
 gemini_api_key = st.secrets["GEMINI_API_KEY"]
+GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
 
 st.set_page_config(page_title="AI 醫療智能診斷系統", layout="centered")
 st.title("🤖 AI 醫療智能診斷系統")
@@ -100,7 +92,7 @@ if "user_df" in st.session_state and not st.session_state["user_df"].empty:
             recommend_df = extract_recommendation_fields(recommend_result)
 
             patient_location = user_df["地址"]
-            location_results = search_medication_location(patient_location)
+            location_results = search_medication_location(patient_location, GOOGLE_API_KEY)
             final_result = pd.concat([diaginosis_df, recommend_df, location_results], axis=1)
 
 
