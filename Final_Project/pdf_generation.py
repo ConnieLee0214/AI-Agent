@@ -1,8 +1,8 @@
 from jinja2 import Environment, FileSystemLoader
-import pdfkit
 import pandas as pd
 from io import BytesIO
 from markupsafe import Markup
+from weasyprint import HTML
 import os
 
 
@@ -23,6 +23,7 @@ def create_pdf(result_df):
     # pdfkit.from_string(html_out, "/Users/connielee/Desktop/code/Final_Project/report.pdf")
         # 使用 BytesIO 生成 PDF 並保存在內存中
     pdf_output = BytesIO()
-    pdfkit.from_string(html_out, pdf_output)
+    # pdfkit.from_string(html_out, pdf_output)
+    HTML(string=html_out).write_pdf(pdf_output)
     pdf_output.seek(0)  # 重設游標到檔案開頭
     return pdf_output
