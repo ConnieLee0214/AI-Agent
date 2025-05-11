@@ -1,6 +1,6 @@
 from playwright.sync_api import sync_playwright
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import pandas as pd
 import csv
 
