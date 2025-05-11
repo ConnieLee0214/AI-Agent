@@ -1,11 +1,13 @@
 import streamlit as st
 import pandas as pd
 import asyncio
-# from dotenv import load_dotenv
-from bridge import first_result_process, extract_recommendation_fields
 import os
-
+# from dotenv import load_dotenv
+from jinja2 import Environment, FileSystemLoader
+from bridge import first_result_process, extract_recommendation_fields
 from agent_runner import run_agent_diaginosis, run_agent_recommendation
+from playwright_application import search_medication_location
+from pdf_generation import create_pdf
 
 # 載入 .env 檔的環境變數（如 API 金鑰）
 # load_dotenv()
@@ -71,6 +73,7 @@ if "user_df" in st.session_state and not st.session_state["user_df"].empty:
 
             if not assistant_rows.empty and mask.any():
                 diaginosis_result = assistant_rows["content"]
+                print('Data from assistant')
             else:
                 diaginosis_result = diaginosis_log.loc[diaginosis_log["source"] == "data_agent", "content"]
             diaginosis_df = first_result_process(diaginosis_result)
@@ -82,21 +85,25 @@ if "user_df" in st.session_state and not st.session_state["user_df"].empty:
             else:
                 recommend_result = second_log.loc[diaginosis_log["source"] == "data_agent", "content"]
             recommend_df = extract_recommendation_fields(recommend_result)
-            final_result = pd.concat([diaginosis_df, recommend_df], axis=1)
+
+            patient_location = user_df["地址"]
+            location_results = search_medication_location(patient_location)
+            final_result = pd.concat([diaginosis_df, recommend_df, location_results], axis=1)
 
 
         st.success("✅ 分析完成！以下為 AI 診斷結果與建議：")
         st.dataframe(final_result)
-
+        pdf_output = create_pdf(final_result)
         # 下載結果
         st.download_button(
-            label="💾 下載分析結果 CSV",
-            data=final_result.to_csv(index=False),
-            file_name="AI_分析報告.csv",
-            mime="text/csv"
+            label="💾 下載分析結果 PDF",
+            # data=final_result.to_csv(index=False),
+            data = pdf_output
+            file_name="AI_分析報告.pdf",
+            mime="application/pdf"
         )
         st.stop()
-        os._exit(0)
+        # os._exit(0)
 
 # 台北市大安區敦化南路二段218號
 # 發燒, 咳嗽, 喉嚨痛
