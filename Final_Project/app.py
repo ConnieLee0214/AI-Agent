@@ -10,7 +10,7 @@ from agent_runner import run_agent_diaginosis, run_agent_recommendation
 from google_search import search_medication_location
 import os
 os.system('apt-get update')
-os.system('apt-get install -y libpangocairo-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 libjpeg-dev libopenjp2-7-dev libffi-dev')
+os.system('apt-get install -y libpangocairo-1.0-0 libpango1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 libjpeg-dev libopenjp2-7-dev libffi-dev')
 from pdf_generation import create_pdf
 # 載入 .env 檔的環境變數（如 API 金鑰）
 # load_dotenv()
