@@ -13,3 +13,4 @@ pdfkit
 pandas
 # json
 streamlit
+weasyprint
