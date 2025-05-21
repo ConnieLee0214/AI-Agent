@@ -21,24 +21,10 @@ st.set_page_config(page_title="AI 醫療智能診斷系統", layout="centered")
 st.title("🤖 AI 醫療智能診斷系統")
 
 # --- 使用者選擇輸入模式 ---
-# mode = st.radio("請選擇資料來源：", ["📤 上傳 Excel", "📝 手動輸入"], horizontal=True)
 st.subheader("📝 請輸入下列資料:")
 
 user_df = None
 
-# --- 模式一：上傳 Excel 檔案 ---
-# if mode == "📤 上傳 Excel":
-#     uploaded_file = st.file_uploader("上傳病人資料（支援 xlsx）", type=["xlsx"])
-#     if uploaded_file:
-#         try:
-#             user_df = pd.read_excel(uploaded_file)
-#             st.success("成功讀取資料！以下是上傳的內容：")
-#             st.dataframe(user_df)
-#         except Exception as e:
-#             st.error(f"讀取檔案錯誤：{e}")
-
-# --- 模式二：手動輸入表單 ---
-# if mode == "📝 手動輸入":
 with st.form("user_input_form"):
     name = st.text_input("病人姓名")
     symptoms = st.text_area("症狀（用逗號分隔）", placeholder="例如：發燒, 咳嗽, 喉嚨痛")
