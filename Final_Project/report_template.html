@@ -115,10 +115,11 @@
     <h2>就醫建議</h2>
     <p><strong>嚴重程度評估：</strong>{{ patient['嚴重程度評估'] }}</p>
     <p><strong>是否需立即就醫：</strong>{{ patient['是否需立即就醫'] }}</p>
-    <p><strong>看診科別建議 / 藥品購買建議：</strong></p>
-    <div style="white-space: pre-line; background:#f3f3f3; padding:10px; border-radius:5px;">
+    <p><strong>看診科別建議 / 藥品購買建議：</strong><br>{{ patient['看診科別建議/藥品購買建議'] | nl2br }}</p>
+
+    <!-- <div style="white-space: pre-line; background:#f3f3f3; padding:10px; border-radius:5px;">
         {{ patient['看診科別建議/藥品購買建議'] }}
-    </div>
+    </div> -->
 </div>
 
 <div class="card">
