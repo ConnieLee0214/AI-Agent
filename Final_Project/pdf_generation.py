@@ -25,7 +25,7 @@ def create_pdf(result_df):
         return Markup(value.replace('\n', '<br>'))
     
     patient = result_df.iloc[0].to_dict()
-    text_fields = ["可能分析依據", "疫情新聞摘要", "是否與症狀有關聯", "參考來源", "嚴重程度評估", "是否需立即就醫", "看診科別建議 / 藥品購買建議"]
+    text_fields = ["可能疾病分析依據", "疫情新聞摘要", "是否與症狀有關聯", "參考來源", "嚴重程度評估", "是否需立即就醫", "看診科別建議 / 藥品購買建議"]
     for field in text_fields:
         if field in patient and isinstance(patient[field], str):
             patient[field] = _break_chinese_paragraph(patient[field])
