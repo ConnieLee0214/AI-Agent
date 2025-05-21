@@ -9,7 +9,7 @@ import re
 
 
 def create_pdf(result_df):
-    def _break_chinese_paragraph(text, max_chars=63):
+    def _break_chinese_paragraph(text, max_chars=39):
         # 先用中文標點分句，加上 <br>（也支援英文句點）
         text = re.sub(r'([。！？\?])', r'\1<br>', text)
         # 若句子太長仍超出，額外加 <wbr> 每 max_chars 字
