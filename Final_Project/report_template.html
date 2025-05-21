@@ -11,6 +11,7 @@
         body {
             font-family: "NotoSansTC", sans-serif;
             margin: 40px;
+            font-size: 16px;
             background-color: #f9f9f9;
             color: #333;
             word-wrap: break-word;
@@ -35,7 +36,7 @@
             padding-bottom: 5px;
             margin-top: 0;
         }
-        .section p, .card p, .card div, .card ul {
+        /* .section p, .card p, .card div, .card ul {
             margin: 6px 0;
             max-width: 720px;
             padding-left: 10px;
@@ -44,7 +45,7 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             word-break: break-word;
-        }
+        } */
         ul {
             padding-left: 2em;
         }
@@ -150,3 +151,90 @@
 
 </body>
 </html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>病人報告</title>
+    <style>
+        @font-face {
+        font-family: "NotoSansTC";
+        src: url("Font/NotoSansTC-Regular.ttf");
+        }
+        body {
+            font-family: "NotoSansTC";
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        h2 {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        .section p {
+            margin: 6px 0;
+        }
+        .footer {
+            font-size: 12px;
+            color: #777;
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>病人基本資料</h2>
+    <p><strong>姓名：</strong>{{ patient['病人姓名'] }}</p>
+    <p><strong>症狀：</strong>{{ patient['症狀'] }}</p>
+    <p><strong>個人病史：</strong>{{ patient['個人病史'] }}</p>
+    <p><strong>家族病史：</strong>{{ patient['家族病史'] }}</p>
+    <p><strong>旅遊史：</strong>{{ patient['旅遊史'] }}</p>
+</div>
+
+
+<div class="card">
+    <h2>疾病分析</h2>
+    <p><strong>可能疾病：</strong>{{ patient['可能疾病名稱'] }}</p>
+    <p><strong>分析依據：</strong>{{ patient['可能疾病分析依據'] }}</p>
+    <p><strong>疫情新聞摘要：</strong>{{ patient['疫情新聞摘要'] }}</p>
+    <p><strong>是否與症狀有關聯：</strong>{{ patient['是否與症狀有關聯'] }}</p>
+    <p><strong>參考來源：</strong>{{ patient['參考來源'] }}</p>
+</div>
+
+<div class="card">
+    <h2>就醫建議</h2>
+    <p><strong>嚴重程度評估：</strong>{{ patient['嚴重程度評估'] }}</p>
+    <p><strong>是否需立即就醫：</strong>{{ patient['是否需立即就醫'] }}</p>
+    <p><strong>看診科別建議 / 藥品購買建議：</strong></p>
+    <div style="white-space: pre-line; background:#f3f3f3; padding:10px; border-radius:5px;">
+        {{ patient['看診科別建議/藥品購買建議'] }}
+    </div>
+</div>
+
+<div class="card">
+    <h2>推薦地點</h2>
+    <p><strong>診所：</strong>{{ patient['診所'] | nl2br }}</p>
+    <p><strong>醫院：</strong>{{ patient['醫院'] | nl2br }}</p>
+    <p><strong>藥局：</strong>{{ patient['藥局'] | nl2br }}</p>
+</div>
+
+<div class="footer">
+    本報告僅供參考，請依照醫師專業診斷為準。
+</div>
+
+</body>
+</html> -->
