@@ -113,10 +113,16 @@ def extract_recommendation_fields(second_result):
     need_visit_text = need_visit.group(1).strip() if need_visit else ""
 
     # 看診科別建議/藥品購買建議
-    # dept_med = re.search(r"\*\*看診科別建議/藥品購買建議：\*\*\n\n(.+?)\n\n\*\*", text, re.DOTALL)
-    # dept_med = re.search(r"\*\*看診科別建議/藥品購買建議：\*\*\s*(.+)", text, re.DOTALL)
     dept_med = re.search(r"\*\*看診科別建議.*?(?=TERMINATE)", text, re.DOTALL)
     dept_med_text = dept_med.group(0).strip() if dept_med else ""
+
+    dept_med_text = re.sub(r"\*\*看診科別建議/藥品購買建議：\*\*\n*", "", dept_med_text)
+
+    # 移除所有星號符號（* 與 **）
+    dept_med_text = re.sub(r"\*+", "", dept_med_text)
+
+    # 移除多餘的空行（可選）
+    dept_med_text = re.sub(r"\n{2,}", "\n", dept_med_text).strip()
 
     return pd.DataFrame([{
         "嚴重程度評估": severity_text,
