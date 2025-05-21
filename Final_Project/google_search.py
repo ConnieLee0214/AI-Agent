@@ -18,7 +18,7 @@ def search_medication_location(patient_location, GOOGLE_API_KEY):
         places_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
         params = {
             "location": f"{lat},{lng}",
-            "radius": 3000,  # 半徑 3 公里內
+            "radius": 1000,  # 半徑 3 公里內
             "keyword": keyword,
             "language": "zh-TW",
             "key": GOOGLE_API_KEY
