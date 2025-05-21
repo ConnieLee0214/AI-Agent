@@ -120,13 +120,13 @@
     </div>
 </div>
 
-<!-- <div class="card">
-    <h2>推薦地點</h2>
-    <p><strong>診所：</strong>{{ patient['診所'] | nl2br }}</p>
-    <p><strong>醫院：</strong>{{ patient['醫院'] | nl2br }}</p>
-    <p><strong>藥局：</strong>{{ patient['藥局'] | nl2br }}</p>
-</div> -->
 <div class="card">
+    <h2>推薦地點</h2>
+    <p><strong>診所：</strong><br>{{ patient['診所'] | nl2br }}</p>
+    <p><strong>醫院：</strong><br>{{ patient['醫院'] | nl2br }}</p>
+    <p><strong>藥局：</strong><br>{{ patient['藥局'] | nl2br }}</p>
+</div>
+<!-- <div class="card">
     <h2>推薦地點</h2>
     <p><strong>診所：</strong></p>
     <div class="multiline-block">
@@ -142,7 +142,7 @@
     <div class="multiline-block">
         {{ patient['藥局'] }}
     </div>
-</div>
+</div> -->
 
 <div class="footer">
     本報告僅供參考，請依照醫師專業診斷為準。
