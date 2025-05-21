@@ -99,15 +99,11 @@
 <div class="card">
     <h2>疾病分析</h2>
     <p><strong>可能疾病：</strong>{{ patient['可能疾病名稱'] }}</p>
+    <p><strong>分析依據：</strong>{{ patient['可能疾病分析依據']  | safe }}</p>
     
-    <p><strong>分析依據：</strong></p>
-    <div class="multiline-block">
-        {{ patient['可能疾病分析依據'] }}
-    </div>
-    
-    <p><strong>疫情新聞摘要：</strong>{{ patient['疫情新聞摘要'] }}</p>
-    <p><strong>是否與症狀有關聯：</strong>{{ patient['是否與症狀有關聯'] }}</p>
-    <p><strong>參考來源：</strong>{{ patient['參考來源'] }}</p>
+    <p><strong>疫情新聞摘要：</strong>{{ patient['疫情新聞摘要'] | safe }}</p>
+    <p><strong>是否與症狀有關聯：</strong>{{ patient['是否與症狀有關聯'] | safe }}</p>
+    <p><strong>參考來源：</strong>{{ patient['參考來源'] | safe }}</p>
 </div>
 
 
