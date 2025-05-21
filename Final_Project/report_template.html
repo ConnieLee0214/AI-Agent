@@ -28,19 +28,22 @@
             overflow-wrap: break-word;
             word-break: break-word;
         }
-        .card p, .card div {
-        max-width: 720px;
-        padding-left: 10px;
-        padding-right: 10px;
-        }
-
         h2 {
             border-bottom: 2px solid #ccc;
             padding-bottom: 5px;
             margin-top: 0;
         }
-        .section p {
+        .section p, .card p, .card div, .card ul {
             margin: 6px 0;
+            max-width: 720px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        ul {
+            padding-left: 2em;
+        }
+        ul li {
+            margin-bottom: 6px;
         }
         .footer {
             font-size: 12px;
@@ -75,14 +78,31 @@
 </div>
 
 
-<div class="card">
+<!-- <div class="card">
     <h2>疾病分析</h2>
     <p><strong>可能疾病：</strong>{{ patient['可能疾病名稱'] }}</p>
     <p><strong>分析依據：</strong>{{ patient['可能疾病分析依據'] }}</p>
     <p><strong>疫情新聞摘要：</strong>{{ patient['疫情新聞摘要'] }}</p>
     <p><strong>是否與症狀有關聯：</strong>{{ patient['是否與症狀有關聯'] }}</p>
     <p><strong>參考來源：</strong>{{ patient['參考來源'] }}</p>
+</div> -->
+
+<div class="card">
+    <h2>疾病分析</h2>
+    <p><strong>可能疾病：</strong>{{ patient['可能疾病名稱'] }}</p>
+    
+    <p><strong>分析依據：</strong></p>
+    <div>
+        {{ patient['可能疾病分析依據'] | safe }}
+    </div>
+    
+    <p><strong>疫情新聞摘要：</strong>{{ patient['疫情新聞摘要'] }}</p>
+    <p><strong>是否與症狀有關聯：</strong>{{ patient['是否與症狀有關聯'] }}</p>
+    <p><strong>參考來源：</strong>{{ patient['參考來源'] }}</p>
 </div>
+
+
+
 
 <div class="card">
     <h2>就醫建議</h2>
