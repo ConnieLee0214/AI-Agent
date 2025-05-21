@@ -9,10 +9,12 @@
         src: url("Font/NotoSansTC-Regular.ttf");
         }
         body {
-            font-family: "NotoSansTC";
+            font-family: "NotoSansTC", sans-serif;
             margin: 40px;
             background-color: #f9f9f9;
             color: #333;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         .card {
             background: white;
@@ -20,6 +22,7 @@
             padding: 25px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             margin-bottom: 30px;
+            max-width: 800px;
         }
         h2 {
             border-bottom: 2px solid #ccc;
@@ -34,6 +37,13 @@
             color: #777;
             margin-top: 30px;
             text-align: center;
+        }
+        .multiline-block {
+            white-space: pre-line;
+            background: #f3f3f3;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -68,11 +78,28 @@
     </div>
 </div>
 
-<div class="card">
+<!-- <div class="card">
     <h2>推薦地點</h2>
     <p><strong>診所：</strong>{{ patient['診所'] | nl2br }}</p>
     <p><strong>醫院：</strong>{{ patient['醫院'] | nl2br }}</p>
     <p><strong>藥局：</strong>{{ patient['藥局'] | nl2br }}</p>
+</div> -->
+<div class="card">
+    <h2>推薦地點</h2>
+    <p><strong>診所：</strong></p>
+    <div class="multiline-block">
+        {{ patient['診所'] }}
+    </div>
+
+    <p><strong>醫院：</strong></p>
+    <div class="multiline-block">
+        {{ patient['醫院'] }}
+    </div>
+
+    <p><strong>藥局：</strong></p>
+    <div class="multiline-block">
+        {{ patient['藥局'] }}
+    </div>
 </div>
 
 <div class="footer">
