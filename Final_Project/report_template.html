@@ -6,7 +6,12 @@
     <style>
         @font-face {
         font-family: "NotoSansTC";
-        src: url("Font/NotoSansTC-Regular.ttf");
+        src: url("font/NotoSansTC-Regular.ttf");
+        }
+        @font-face {
+        font-family: "NotoSansTC";
+        src: url("font/NotoSansTC-Bold.ttf");
+        font-weight: bold;
         }
         body {
             font-family: "NotoSansTC", sans-serif;
@@ -35,17 +40,8 @@
             border-bottom: 2px solid #ccc;
             padding-bottom: 5px;
             margin-top: 0;
+            font-weight: bold;
         }
-        /* .section p, .card p, .card div, .card ul {
-            margin: 6px 0;
-            max-width: 720px;
-            padding-left: 10px;
-            padding-right: 10px;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            word-break: break-word;
-        } */
         ul {
             padding-left: 2em;
         }
@@ -115,7 +111,7 @@
     <h2>就醫建議</h2>
     <p><strong>嚴重程度評估：</strong>{{ patient['嚴重程度評估'] }}</p>
     <p><strong>是否需立即就醫：</strong>{{ patient['是否需立即就醫'] }}</p>
-    <p><strong>看診科別建議 / 藥品購買建議：</strong><br>{{ patient['看診科別建議/藥品購買建議'] | nl2br }}</p>
+    <p><strong>看診科別建議 / 藥品購買建議：</strong><br>{{ patient['看診科別建議/藥品購買建議'] | nl2br | safe }}</p>
 
     <!-- <div style="white-space: pre-line; background:#f3f3f3; padding:10px; border-radius:5px;">
         {{ patient['看診科別建議/藥品購買建議'] }}
