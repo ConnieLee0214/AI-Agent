@@ -42,7 +42,7 @@ with st.form("user_input_form"):
             "家族病史": family_history,
             "旅遊史": travel_history,
             "地址": address
-        }])
+        }], index=False)
         st.session_state["user_df"] = user_df
         st.success("資料已建立！")
 
